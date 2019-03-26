@@ -21,6 +21,8 @@ public class Main {
         // TODO code application logic here
         PrincipalGUI prin= new PrincipalGUI();
         prin.setVisible(true);
+
+
     }
     
 }

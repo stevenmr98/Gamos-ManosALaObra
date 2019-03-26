@@ -37,14 +37,12 @@ public class Administrator extends Employee implements Serializable {
         }
         if (category == 2) {
             temp += 250 * 0.2;
-            this.setWageEmployee(temp);
+           // this.setWageEmployee(temp);
         }
         return temp;
     }//estimateSalary
 
-    @Override
-    public String toString() {
-        return "Administrator{" + "category=" + category + '}';
-    }
+  
+    
 
 }//public class Administrative extends Employee {

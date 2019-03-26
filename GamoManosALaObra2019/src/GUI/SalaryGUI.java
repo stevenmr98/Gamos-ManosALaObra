@@ -18,14 +18,17 @@ public class SalaryGUI extends javax.swing.JFrame {
 
     
     //variables
-    Janitor jan= new Janitor("Steven", "morales", "2344", 4, "ucr",true, 18);
-    Driver drive= new Driver("Meilyn", "Garro", 250, "223", 455, "tec", true,"grua" , true);
-    Administrator admin= new Administrator((short)2, "Menta","Cartuchera", "1234", 234, "Latina");
+    Janitor jan= new Janitor("Steven", "morales", "2344", 4, "ucr");
+   
+    Driver drive= new Driver("Meilyn", "Garro", 250, "223", 455, "tec", true,"automobile" );
+    Administrator admin= new Administrator((short)1, "Menta","Cartuchera", "1234", 234, "Latina");
     public SalaryGUI() {
         initComponents();
           this.setTitle("GaMo's Enterprise");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        jlbErrorText.setVisible(false);
+        jlbErrorImage.setVisible(false);
     }
 
     /**
@@ -43,6 +46,11 @@ public class SalaryGUI extends javax.swing.JFrame {
         jbtnSearch = new javax.swing.JButton();
         jpnSecond = new javax.swing.JPanel();
         jbtnMenu = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtxaInfoText = new javax.swing.JTextArea();
+        jlbErrorText = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jlbErrorImage = new javax.swing.JLabel();
         jlblMoneyImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,6 +60,17 @@ public class SalaryGUI extends javax.swing.JFrame {
         jlbName.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jlbName.setForeground(new java.awt.Color(0, 0, 0));
         jlbName.setText("Write the name to search");
+
+        jtfxName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtfxNameMouseClicked(evt);
+            }
+        });
+        jtfxName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfxNameActionPerformed(evt);
+            }
+        });
 
         jbtnSearch.setBackground(new java.awt.Color(102, 255, 102));
         jbtnSearch.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -74,19 +93,63 @@ public class SalaryGUI extends javax.swing.JFrame {
             }
         });
 
+        jtxaInfoText.setColumns(20);
+        jtxaInfoText.setRows(5);
+        jtxaInfoText.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jtxaInfoTextAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(jtxaInfoText);
+
+        jlbErrorText.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jlbErrorText.setForeground(new java.awt.Color(255, 255, 255));
+        jlbErrorText.setText("This person does not exist");
+
+        jlbErrorImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-close-window-48.png"))); // NOI18N
+
         javax.swing.GroupLayout jpnSecondLayout = new javax.swing.GroupLayout(jpnSecond);
         jpnSecond.setLayout(jpnSecondLayout);
         jpnSecondLayout.setHorizontalGroup(
             jpnSecondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnSecondLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnMenu)
+            .addGroup(jpnSecondLayout.createSequentialGroup()
+                .addGroup(jpnSecondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnSecondLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnMenu))
+                    .addGroup(jpnSecondLayout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(jlbErrorText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlbErrorImage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addGap(0, 173, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jpnSecondLayout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnSecondLayout.setVerticalGroup(
             jpnSecondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnSecondLayout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(jpnSecondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnSecondLayout.createSequentialGroup()
+                        .addComponent(jlbErrorText)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnSecondLayout.createSequentialGroup()
+                        .addGroup(jpnSecondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jlbErrorImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)))
                 .addComponent(jbtnMenu)
                 .addContainerGap())
         );
@@ -97,32 +160,30 @@ public class SalaryGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnSecond, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jlbName)
-                        .addGap(131, 131, 131))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jlblMoneyImage, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(188, 188, 188))))
+            .addComponent(jpnSecond, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jbtnSearch))
+                        .addGap(241, 241, 241)
+                        .addComponent(jlblMoneyImage, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jtfxName, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(170, 170, 170)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbName)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jtfxName, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jbtnSearch)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
                 .addComponent(jlbName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlblMoneyImage, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfxName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,17 +215,43 @@ public class SalaryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnMenuActionPerformed
 
     private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
-        if(jtfxName.getText().equalsIgnoreCase("Steven")){
-            JOptionPane.showMessageDialog(null, jan.toString());
-            JOptionPane.showMessageDialog(null, jan.estimateSalary());
-        }if(jtfxName.getText().equalsIgnoreCase("Meilyn")){
-            JOptionPane.showMessageDialog(null, drive.toString());
-            JOptionPane.showMessageDialog(null, drive.estimateSalary());
-        }if(jtfxName.getText().equalsIgnoreCase("Menta")){
-            JOptionPane.showMessageDialog(null, admin.toString());
-            JOptionPane.showMessageDialog(null, admin.estimateSalary());
+        if (jtfxName.getText().equalsIgnoreCase("Steven")) {
+            jan.setExtraHours(true);
+            jan.setHours(2);
+            jtxaInfoText.setVisible(true);
+            jtxaInfoText.setText(jan.toString() + "\nYour salary: " + jan.estimateSalary());
+            jtfxName.setText("");
+        } else if (jtfxName.getText().equalsIgnoreCase("Meilyn")) {
+            jtxaInfoText.setVisible(true);
+            jtxaInfoText.setText(drive.toString() + "\nYour salary: " + drive.estimateSalary("vagoneta", 13, 2));
+            jtfxName.setText("");
+
+        } else if (jtfxName.getText().equalsIgnoreCase("Menta")) {
+            jtxaInfoText.setVisible(true);
+            jtxaInfoText.setText(admin.toString() + "\nYour salary: " + admin.estimateSalary());
+            jtfxName.setText("");
+        } else {
+            jlbErrorImage.setVisible(true);
+            jlbErrorText.setVisible(true);
+            jtfxName.setText("");
         }
     }//GEN-LAST:event_jbtnSearchActionPerformed
+
+    private void jtxaInfoTextAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jtxaInfoTextAncestorAdded
+        // TODO add your handling code here:
+       // jTextArea1.setVisible(false);
+    }//GEN-LAST:event_jtxaInfoTextAncestorAdded
+
+    private void jtfxNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfxNameActionPerformed
+        
+    }//GEN-LAST:event_jtfxNameActionPerformed
+
+    private void jtfxNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfxNameMouseClicked
+        // TODO add your handling code here:
+        jtxaInfoText.setText("");
+        jlbErrorText.setVisible(false);
+        jlbErrorImage.setVisible(false);
+    }//GEN-LAST:event_jtfxNameMouseClicked
 
     /**
      * @param args the command line arguments
@@ -203,12 +290,17 @@ public class SalaryGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnMenu;
     private javax.swing.JButton jbtnSearch;
+    private javax.swing.JLabel jlbErrorImage;
+    private javax.swing.JLabel jlbErrorText;
     private javax.swing.JLabel jlbName;
     private javax.swing.JLabel jlblMoneyImage;
     private javax.swing.JPanel jpnSecond;
     private javax.swing.JTextField jtfxName;
+    private javax.swing.JTextArea jtxaInfoText;
     // End of variables declaration//GEN-END:variables
 }

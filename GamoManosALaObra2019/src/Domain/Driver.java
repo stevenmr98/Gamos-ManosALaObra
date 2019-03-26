@@ -4,51 +4,59 @@ public class Driver extends Employee {
     //Variables
 
     private int salarioEmpleado;
-    private boolean automobileDriver;
-    private String machinery;
-    private boolean driveNight;
+    private int moneyHour = 0;
 
 //Constructor
     public Driver(String nameEmployee, String lastNameEmployee, int wageEmployee, String idCardEmployee, int codeEmployee, String universityDegree,
-    boolean automobileDriver,String machinery,boolean driveNight) {
+            boolean automobileDriver, String machinery) {
         super(nameEmployee, lastNameEmployee, wageEmployee, idCardEmployee, codeEmployee, universityDegree);
-        this.automobileDriver=automobileDriver;
-        this.machinery=machinery;
-        this.driveNight=driveNight;
+
     }
 
-    public int estimateSalary(){
-       
-        int temp = super.getWageEmployee();
-        int extra;
-
-        if (automobileDriver == true) {
-          super.setWageEmployee(temp);
-        } else {
-
-                switch (machinery) {
-                    case "vagoneta":
-                        extra = 6;
-                        super.setWageEmployee(temp + extra);
-                        break;
-                    case "grua":
-                        extra = 8;
-                        super.setWageEmployee(temp + extra);
-
-                        break;
-                    case "monta carga":
-                        extra = 14;
-                        super.setWageEmployee(temp + extra);
-                        break;
+    public int estimateSalary(String tipo, int hours, int extraHours) {
+        this.salarioEmpleado = 0;
+        switch (tipo) {
+            case "automobile":
+                this.moneyHour = 3;
+                if (hours != 0) {
+                    this.salarioEmpleado += hours * moneyHour;
+                    if (extraHours != 0) {
+                        return this.salarioEmpleado += extraHours * (moneyHour * 2);
+                        
+                    }
                 }
-            }
-           if (driveNight == true) {
-                super.setWageEmployee(temp * 2);
-            }
-        
-        return temp;
-       
-    }// public void driverSalary
 
-}//public class Driver
+            case "vagoneta":
+                this.moneyHour = 3;
+                if (hours != 0) {
+                    this.salarioEmpleado += hours * moneyHour;
+                    if (extraHours != 0) {
+                        return this.salarioEmpleado += extraHours * (moneyHour * 2);
+                    }
+                }
 
+                break;
+            case "grua":
+                this.moneyHour = 4;
+                if (hours != 0) {
+                    this.salarioEmpleado += hours * moneyHour;
+                    if (extraHours != 0) {
+                        return this.salarioEmpleado += extraHours * (moneyHour * 2);
+                    }
+                }
+
+                break;
+            case "monta carga":
+                extraHours = 7;
+                if (hours != 0) {
+                    this.salarioEmpleado += hours * moneyHour;
+                    if (extraHours != 0) {
+                        return this.salarioEmpleado += extraHours * (moneyHour * 2);
+                    }
+                }
+                break;
+        }
+        return this.salarioEmpleado;
+    }
+
+}

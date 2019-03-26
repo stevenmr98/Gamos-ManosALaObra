@@ -280,6 +280,11 @@ public class AdministratorGUI extends javax.swing.JFrame implements Serializable
         jbtnDelete.setBackground(new java.awt.Color(153, 0, 0));
         jbtnDelete.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbtnDelete.setText("Delete");
+        jbtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnDeleteActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -395,6 +400,7 @@ public class AdministratorGUI extends javax.swing.JFrame implements Serializable
       AdmistratorData adminData= new  AdmistratorData();
         try {
             adminData.SaveAdministrator(admin);
+            JOptionPane.showMessageDialog(null, admin.toString());
         } catch (IOException ex) {
             Logger.getLogger(AdministratorGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -414,6 +420,10 @@ public class AdministratorGUI extends javax.swing.JFrame implements Serializable
             Logger.getLogger(AdministratorGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtnSearchActionPerformed
+
+    private void jbtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeleteActionPerformed
+      
+    }//GEN-LAST:event_jbtnDeleteActionPerformed
 
     /**
      * @param args the command line arguments

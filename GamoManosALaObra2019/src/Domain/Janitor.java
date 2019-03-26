@@ -13,20 +13,37 @@ public class Janitor extends Employee {
         this.hours = 0;
     }//Constructor vacio
 
-    public Janitor(String nameEmployee, String lastNameEmployee, String idCardEmployee, int codeEmployee, String universityDegree, boolean extraHours, int hours) {
+    public Janitor(String nameEmployee, String lastNameEmployee, String idCardEmployee, int codeEmployee, String universityDegree) {
         super(nameEmployee, lastNameEmployee, 120, idCardEmployee, codeEmployee, universityDegree);
         this.extraHours = extraHours;
         this.hours = hours;
       //  estimateSalary();
     }//Constructor
 
+    public boolean isExtraHours() {
+        return extraHours;
+    }
+
+    public void setExtraHours(boolean extraHours) {
+        this.extraHours = extraHours;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
     @Override
     public int estimateSalary() {
         int temp = this.getWageEmployee();
-        int wage;
+        int quarter=0;
         if (extraHours == true) {
-            temp += hours * 0.25;
-            this.setWageEmployee(temp);
+            quarter= (int) (temp * 0.25);
+            temp+=quarter*hours;
+     //  this.setWageEmployee(temp);
         }
         return temp;
     }//estimateSalary
